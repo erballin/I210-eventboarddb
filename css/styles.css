@@ -1,0 +1,45 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-bottom: 16px;
+}
+
+/* END OF RESET - BEGIN NAV */
+
+nav {
+  min-height: 70px;
+  border-bottom: 4px solid #47bcba;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 30px;
+  padding: 0 20px;
+  font-family: monospace;
+  font-size: 22px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #47bcba;
+  font-weight: 900;
+  text-decoration-thickness: 2px;
+}
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* END OF NAV */
