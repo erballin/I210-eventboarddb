@@ -25,11 +25,23 @@ nav {
   border-bottom: 4px solid #47bcba;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 30px;
+  justify-content: space-between;
   padding: 0 20px;
   font-family: monospace;
   font-size: 22px;
+  color: #47bcba;
+}
+
+nav .links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+nav h1 {
+  margin: 0;
+  padding: 0;
 }
 
 nav a {
