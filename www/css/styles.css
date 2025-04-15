@@ -7,6 +7,7 @@
 html,
 body {
   height: 100%;
+  background-color: #f4e2fd;
 }
 h1,
 h2,
@@ -22,14 +23,15 @@ p {
 
 nav {
   min-height: 70px;
-  border-bottom: 4px solid #47bcba;
+  border-bottom: 4px solid #f4e2fd;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
   font-family: monospace;
   font-size: 22px;
-  color: #47bcba;
+  color: #f4e2fd;
+  background-color: #5546a0;
 }
 
 nav .links {
@@ -46,7 +48,7 @@ nav h1 {
 
 nav a {
   text-decoration: none;
-  color: #47bcba;
+  color: #efefef;
   font-weight: 900;
   text-decoration-thickness: 2px;
 }
