@@ -57,3 +57,51 @@ nav a:hover {
 }
 
 /* END OF NAV */
+
+h2 {
+  color: #5546a0;
+  font-family: monospace;
+  font-size: 50px;
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 20px;
+}
+
+h3 {
+  color: #201f22;
+  font-family: monospace;
+  font-size: 25px;
+  padding-top: 10px;
+  padding-left: 60px;
+}
+
+
+
+p {
+  max-width: 700px;
+  padding-bottom: 25px;
+  padding-top: 25px;
+}
+
+p1 {
+  max-width: 700px;
+  padding-bottom: 25px;
+  padding-top: 25px;
+  float: left ;
+}
+
+.speaker {
+  max-width: 800px;
+  object-fit: cover;
+  border-radius: 50%;
+float: right;
+  padding-right: 60px;
+}
+
+h6 {
+  color: #201f22;
+  font-size: 20px;
+  text-align: center;
+  padding-top: 15px;
+}
+
