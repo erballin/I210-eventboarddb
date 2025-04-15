@@ -3,7 +3,7 @@ $page_title = "EventBoardDB";
 
 include ('includes/header.php');
 ?>
-    <h2>Welcome to EventBoardDB</h2>
+    <h2>Welcome to EventBoardDB!</h2>
 <content>
 <h3>
 <p1>
