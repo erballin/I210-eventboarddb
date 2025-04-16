@@ -8,7 +8,7 @@
 $host="localhost";
 $login="phpuser";
 $password="phpuser";
-$database="bookstore_db";
+$database="eventboarddb";
 
 // connect to the mysql sever
 $conn=@new mysqli($host,$login,$password,$database);

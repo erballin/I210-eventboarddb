@@ -7,10 +7,12 @@
     </head>
     <body>
         <nav>
-            <h1><a href="index.php">EventBoardDB</a></h1>
+            <p><a href="index.php">Event Board</a></p>
             <div class="links">
                 <a href="index.php">Home</a> |
-                <a href="about.php">About</a> |
-                <a href="browse.php">Browse</a>
+                <a href="browse.php">Browse</a> |
+                <a href="event_form.php">Create Event</a> |
+                <a href="signin.php">Sign In</a>
             </div>
         </nav>
+        <div class="wrapper">
