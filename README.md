@@ -20,3 +20,7 @@ Users will be able to search for events by keyword or by selecting from a variet
 ### Elliot
 
 - Website design & mockup
+
+### Ben
+
+- Managed user logic and account related pages
