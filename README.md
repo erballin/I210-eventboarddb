@@ -15,7 +15,7 @@ Users will be able to search for events by keyword or by selecting from a variet
 ### Erin
 
 - Created Database Schema
-- Created Browse and all Event Logic, along with their respective pages and unique stlying.
+- Created Browse and all Event Logic, along with their respective pages and unique styling.
 
 ### Elliot
 

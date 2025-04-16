@@ -1,3 +1,9 @@
+<?php
+include ('database.php')
+?>
+<?php
+session_start();
+?>
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -12,7 +18,13 @@
                 <a href="index.php">Home</a> |
                 <a href="browse.php">Browse</a> |
                 <a href="event_form.php">Create Event</a> |
-                <a href="signin.php">Sign In</a>
+                <?php
+                    if (!isset($_SESSION['user_id'])) {
+                        echo "<a href='signin.php'>Sign In</a>";
+                    } else {
+                        echo "<a href='user.php?userId=" . $_SESSION['user_id'] ."'>" . $_SESSION['username'] . "</a>";
+                    }
+                ?>
             </div>
         </nav>
         <div class="wrapper">

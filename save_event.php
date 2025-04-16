@@ -1,6 +1,12 @@
 <?php
 include('database.php');
 
+if (!isset($_SESSION['user_id'])) {
+    // Redirect to login or show guest view
+    echo "NO CURRENT USER LOGGED IN...";
+    exit();
+}
+
 // Handle deletion first
 if (isset($_POST['action']) && $_POST['action'] === 'delete' && isset($_POST['event_id'])) {
     $event_id = intval($_POST['event_id']);
@@ -29,7 +35,7 @@ $end_time = $_POST['end_time'] ?? '';
 $category_id = isset($_POST['category_id']) && is_numeric($_POST['category_id']) ? intval($_POST['category_id']) : 0;
 
 $event_id = $_POST['event_id'] ?? '';
-$host_id = 1; // Replace with logged-in user's ID
+$host_id = $_SESSION['user_id'];
 
 if (!empty($event_id)) {
     // Editing

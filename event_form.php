@@ -3,6 +3,12 @@ $page_title = "Create or Edit Event";
 include ('includes/header.php');
 include ('database.php');
 
+if (!isset($_SESSION['user_id'])) {
+    // Redirect to login or show guest view
+    echo "No current user found, please log in or create an account to post an event.";
+    exit();
+}
+
 $isEditing = false;
 $event = [
     'title' => '',
