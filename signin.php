@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($user = $result->fetch_assoc()) {
         if (password_verify($password, $user['password'])) {
             $_SESSION["user"] = $user["user_name"];
-            header("Location: dashboard.php");
+            header("Location: index.php");
             exit();
         } else {
             $login_error = "Invalid password.";
