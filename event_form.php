@@ -85,21 +85,24 @@ while ($row = $cat_result->fetch_assoc()) {
         </tr>
     </table>
 
-    <div style="text-align: center; margin-top: 20px;">
+    <inline>
+    <div style="text-align: center;">
         <button type="submit">
             <?= $isEditing ? 'Update Event' : 'Create Event' ?>
         </button>
     </div>
   </form>
 <?php if ($isEditing): ?>
-  <form method="post" action="save_event.php" onsubmit="confirm('Are you sure you want to delete this event?');" style="text-align: center; margin-top: 10px;">
-    
-    <div style="text-align: center; margin-top: 3px;">
-      <input type="hidden" name="event_id" value="<?= htmlspecialchars($event['event_id']) ?>">
-      <input type="hidden" name="action" value="delete">
-      <button type="submit" style="background-color: #d9534f; border-color: #d9534f;">Delete Event</button>
-    </div>
-  </form>
+
+    <form method="post" action="save_event.php" onsubmit="confirm('Are you sure you want to delete this event?');" style="text-align: center; display: inline;">
+      
+      <div style="text-align: display: inline; center; ">
+        <input type="hidden" name="event_id" value="<?= htmlspecialchars($event['event_id']) ?>">
+        <input type="hidden" name="action" value="delete">
+        <button type="submit" style="display: inline; background-color: #d9534f; border-color: #d9534f;">Delete Event</button>
+      </div>
+    </form>
+  </inline>
 <?php endif; ?>
 
 <?php include ('includes/footer.php'); ?>
