@@ -1,10 +1,10 @@
 <?php
-$page_title = "Event Details";
+$page_title = "signin";
 
 include ('includes/header.php');
 ?>
 
-    <h2>Event Title</h2>
+<div class="main">ben's page</div>
 
 <?php
 include ('includes/footer.php');

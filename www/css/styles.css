@@ -7,6 +7,7 @@
 html,
 body {
   height: 100%;
+  font-family: sans;
   background-color: #f4e2fd;
 }
 h1,
@@ -28,7 +29,6 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  font-family: monospace;
   font-size: 25px;
   color: #f4e2fd;
   background-color: #5546a0;
@@ -41,8 +41,9 @@ nav .links {
   gap: 15px;
 }
 
-nav h1 {
+nav p {
   margin: 0;
+  font-size: 30px;
   padding: 0;
 }
 
@@ -58,50 +59,112 @@ nav a:hover {
 
 /* END OF NAV */
 
-h2 {
+.main {
   color: #5546a0;
-  font-family: monospace;
   font-size: 50px;
   text-align: center;
   padding-top: 15px;
   padding-bottom: 20px;
-}
-
-h3 {
-  color: #201f22;
-  font-family: monospace;
-  font-size: 25px;
-  padding-top: 10px;
-  padding-left: 60px;
-}
-
-
-
-p {
-  max-width: 700px;
-  padding-bottom: 25px;
-  padding-top: 25px;
-}
-
-p1 {
-  max-width: 700px;
-  padding-bottom: 25px;
-  padding-top: 25px;
-  float: left ;
+  font-weight: 700;
+  margin: 0 !important;
 }
 
 .speaker {
   max-width: 800px;
   object-fit: cover;
   border-radius: 50%;
-float: right;
+  float: right;
   padding-right: 60px;
 }
 
-h6 {
-  color: #201f22;
-  font-size: 20px;
-  text-align: center;
-  padding-top: 15px;
+.wrapper {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
+.eventBoard {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.event {
+  flex: 1;
+  border: 3px solid #5546a0;
+  border-radius: 18px;
+  padding: 8px;
+  font-family: sans-serif;
+  min-width: 350px;
+}
+.event.eventFullSize {
+  max-width: unset !important;
+}
+.event h1 {
+  font-size: 28px;
+  margin-bottom: 0px;
+}
+.event h2,
+.event h3 {
+  font-size: 17px;
+  margin-bottom: 0px;
+  color: rgb(63, 59, 59);
+}
+.event p {
+  margin: 4px 0 0 0;
+}
+.event h5 {
+  margin: 7px 0 3px 0;
+}
+.event a {
+  color: #5f4eb7;
+}
+.event a:hover {
+  color: #8979d7;
+}
+
+.inputBar {
+  margin: 17px 0px;
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+  justify-content: stretch;
+}
+.inputBar * {
+  flex: 0.2;
+}
+.inputBar input {
+  flex: 1;
+}
+.inputBar input,
+.inputBar select {
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 20px;
+  padding: 2px 3px;
+}
+.event .button,
+button {
+  background-color: #5f4eb7;
+  border: 3px solid #5f4eb7;
+  display: inline-block;
+  padding: 7px 17px;
+  font-size: 18px;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+.event .button:hover,
+button:hover {
+  color: rgb(237, 211, 237);
+}
+.event .button.secondary {
+  background-color: transparent;
+  color: #5f4eb7;
+}
+.event .button.secondary:hover {
+  background-color: rgb(237, 211, 237);
+}
