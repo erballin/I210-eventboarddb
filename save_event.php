@@ -1,6 +1,8 @@
 <?php
 include('database.php');
 
+session_start();
+
 if (!isset($_SESSION['user_id'])) {
     // Redirect to login or show guest view
     echo "NO CURRENT USER LOGGED IN...";

@@ -5,7 +5,7 @@ include ('database.php');
 
 if (!isset($_SESSION['user_id'])) {
     // Redirect to login or show guest view
-    echo "No current user found, please log in or create an account to post an event.";
+    echo "No current user found, please log in to edit an event.";
     exit();
 }
 
@@ -29,11 +29,17 @@ if (isset($_GET['eventId']) && is_numeric($_GET['eventId'])) {
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if ($result && $row = $result->fetch_assoc()) {
-        $event = $row;
+    if ($result && ($row = $result->fetch_assoc())) {
+        if ($_SESSION['user_id'] == $row['host_id']) {
+            $event = $row;
+        } else {
+            echo "<p>You do not have permission to view this event.</p>";
+            include('includes/footer.php');
+            exit;
+        }
     } else {
         echo "<p>Event not found.</p>";
-        include ('includes/footer.php');
+        include('includes/footer.php');
         exit;
     }
 
