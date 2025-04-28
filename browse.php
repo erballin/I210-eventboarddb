@@ -10,31 +10,46 @@ include ('includes/header.php');
 <div class="main">Browse Events</div>
 
 <p>Stay caught up to date with the latest events.</p>
-<div class="inputBar">
-  <input type="text" placeholder="Title">
-  <select name="Category" id="categorySelect" aria-placeholder="Category">
-    <option value="none" selected>Category</option>
+<form method="GET" class="inputBar">
+  <input type="text" name="title" placeholder="Title" value="<?php echo htmlspecialchars($_GET['title'] ?? '') ?>">
+  <select name="category" id="categorySelect">
+    <option value="none" <?php if (($_GET['category'] ?? '') == 'none') echo 'selected'; ?>>Category</option>
     <?php 
-    // Query to get all category names
       $sql = "SELECT name AS category_name FROM categories";
       $result = $conn->query($sql);
+      if (!$result) die("Error retrieving categories: " . $conn->error);
 
-      // Check for query errors
-      if (!$result) {
-          die("Error retrieving categories: " . $conn->error);
-      }
-
-      // Populate category options
       while ($row = $result->fetch_assoc()) {
-          echo '<option value="' . htmlspecialchars($row['category_name']) . '">' . htmlspecialchars($row['category_name']) . '</option>';
+          $cat = htmlspecialchars($row['category_name']);
+          if ($cat != "none") {
+              $selected = ($_GET['category'] ?? '') === $cat ? 'selected' : '';
+              echo "<option value=\"$cat\" $selected>$cat</option>";
+          }
       }
     ?>
-    <option value="Gaming">Gaming</option>
   </select>
-</div>
+  <button type="submit">Search</button>
+</form>
 
 <div class="eventBoard">
   <?php
+  $titleFilter = $_GET['title'] ?? '';
+  $categoryFilter = $_GET['category'] ?? 'none';
+
+  $conditions = [];
+  if (!empty($titleFilter)) {
+      $safeTitle = $conn->real_escape_string($titleFilter);
+      $conditions[] = "events.title LIKE '%$safeTitle%'";
+  }
+
+  if (!empty($categoryFilter) && $categoryFilter != 'none') {
+      $safeCategory = $conn->real_escape_string($categoryFilter);
+      $conditions[] = "categories.name = '$safeCategory'";
+  }
+
+  $conditionSql = count($conditions) ? "WHERE " . implode(" AND ", $conditions) : "";
+
+
   // Query to get all events
   $sql = "
     SELECT 
@@ -52,7 +67,8 @@ include ('includes/header.php');
     FROM events
     JOIN users ON events.host_id = user_id
     JOIN categories ON events.category_id = categories.category_id
-    ";
+    $conditionSql
+  ";
   $result = $conn->query($sql);
 
   // Check for query errors
