@@ -67,7 +67,7 @@ if (!$user) {
 }
 
 // Include header
-include 'header.php';
+include 'includes/header.php';
 ?>
 
 <div class="container">
@@ -110,5 +110,5 @@ include 'header.php';
 
 <?php
 // Include footer
-include 'footer.php';
+include 'includes/footer.php';
 ?>
