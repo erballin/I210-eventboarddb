@@ -17,6 +17,7 @@ Users will be able to search for events by keyword or by selecting from a variet
 - Created Database Schema
 - Created Browse and all Event Logic, along with their respective pages and unique styling.
 - Fixed all user related pages before the final presentation.
+  (This fix is available through the final-working-version branch)
 
 ### Elliot
 
