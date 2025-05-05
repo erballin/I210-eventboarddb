@@ -1,9 +1,8 @@
 <?php
-// Include database connection
-include 'database.php';
+$page_title = "Edit User";
 
-// Start the session
-session_start();
+// Include database connection
+include('includes/header.php');
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
@@ -31,8 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             $stmt = $pdo->prepare('UPDATE users SET user_name = :user_name, user_email = :user_email, password = :password, display_name = :display_name, location = :location WHERE id = :id');
             $stmt->execute([
-                'user_name' => $user_name,
-                'user_email' => $user_email,
+                'username' => $user_name,
+                'email' => $user_email,
                 'password' => $hashed_password,
                 'display_name' => $display_name,
                 'location' => $location,
@@ -40,34 +39,50 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ]);
         } else {
             // Update without changing the password
-            $stmt = $pdo->prepare('UPDATE users SET user_name = :user_name, user_email = :user_email, display_name = :display_name, location = :location WHERE id = :id');
-            $stmt->execute([
-                'user_name' => $user_name,
-                'user_email' => $user_email,
-                'display_name' => $display_name,
-                'location' => $location,
-                'id' => $user_id
-            ]);
+            $stmt = $conn->prepare("
+                UPDATE users 
+                SET 
+                    username = ?, 
+                    email = ?, 
+                    display_name = ?, 
+                    location = ? 
+                WHERE user_id = ?
+            ");
+
+            $stmt->bind_param("ssssi", $user_name, $user_email, $display_name, $location, $user_id);
+            $stmt->execute();
         }
 
         // Redirect back to profile page after update
-        header('Location: user_profile.php');
+
+        $_SESSION["username"] = $user_name;
+        header('Location: user.php?userId=' . $user_id);
         exit();
     }
 }
 
-// Fetch current user data
-$stmt = $pdo->prepare('SELECT user_name, user_email, display_name, location FROM users WHERE id = :id');
-$stmt->execute(['id' => $user_id]);
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
+// Fetch user data from database
+$user_id = $_SESSION['user_id'];
 
-if (!$user) {
+$sql = "
+  SELECT 
+    username, 
+    email, 
+    display_name, 
+    location, 
+    created_at 
+  FROM users 
+  WHERE user_id = $user_id
+";
+$result = $conn->query($sql);
+
+if ($result && $result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+} else {
     echo "User not found.";
     exit();
 }
 
-// Include header
-include 'includes/header.php';
 ?>
 
 <div class="container">
@@ -77,15 +92,15 @@ include 'includes/header.php';
         <div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div>
     <?php endif; ?>
 
-    <form method="post" action="edituser.php">
+    <form method="post" action="edit_user.php">
         <div class="form-group">
             <label for="user_name">Username:</label>
-            <input type="text" id="user_name" name="user_name" class="form-control" value="<?php echo htmlspecialchars($user['user_name']); ?>" required>
+            <input type="text" id="user_name" name="user_name" class="form-control" value="<?php echo htmlspecialchars($user['username']); ?>" required>
         </div>
 
         <div class="form-group">
             <label for="user_email">Email:</label>
-            <input type="email" id="user_email" name="user_email" class="form-control" value="<?php echo htmlspecialchars($user['user_email']); ?>" required>
+            <input type="email" id="user_email" name="user_email" class="form-control" value="<?php echo htmlspecialchars($user['email']); ?>" required>
         </div>
 
         <div class="form-group">
